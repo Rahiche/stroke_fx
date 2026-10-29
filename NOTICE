@@ -1,0 +1,6 @@
+stroke_fx
+Copyright 2026 Raouf Rahiche
+
+lib/src/written.dart ports the layout of fountain_pen's PenWriting
+(https://pub.dev/packages/fountain_pen), Copyright 2026 Raouf Rahiche,
+licensed under the Apache License, Version 2.0.

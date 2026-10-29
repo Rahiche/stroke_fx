@@ -1,0 +1,23 @@
+.dart_tool/
+.packages
+build/
+pubspec.lock
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+*.iml
+.DS_Store
+example/build/
+example/.dart_tool/
+example/.idea/
+
+# Development tools (frame capture, contact sheets, measurements).
+tool/
+
+# Linked from the README by URL: not needed in the package, except the GIFs
+# pub.dev shows as screenshots (pubspec.yaml).
+doc/*
+!doc/frost_japanese.gif
+!doc/ivy_latin.gif
+!doc/snow_japanese.gif
+!doc/jelly_latin.gif

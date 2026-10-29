@@ -1,0 +1,49 @@
+name: stroke_fx
+description: Shader effects that live along the strokes of handwritten text and on the joints where strokes meet, as it's written, in Latin, Japanese and Arabic.
+version: 0.1.0
+homepage: https://rahiche.github.io/stroke_fx/
+repository: https://github.com/Rahiche/stroke_fx
+issue_tracker: https://github.com/Rahiche/stroke_fx/issues
+topics: [animation, shader, text, handwriting, effects]
+screenshots:
+  - description: Japanese freezing into ice as it is written, crystals growing where strokes meet.
+    path: doc/frost_japanese.gif
+  - description: A vine climbing every stroke of handwritten Latin text.
+    path: doc/ivy_latin.gif
+  - description: Snow settling on the upward edges of Japanese text.
+    path: doc/snow_japanese.gif
+  - description: Handwritten text in soft jelly, dragged by the pen and springing back.
+    path: doc/jelly_latin.gif
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fountain_pen: ^0.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lints: ^5.0.0
+
+flutter:
+  shaders:
+    - shaders/ink.frag
+    - shaders/neon.frag
+    - shaders/ember.frag
+    - shaders/bleed.frag
+    - shaders/ribbon.frag
+    - shaders/metal.frag
+    - shaders/weld.frag
+    - shaders/thread.frag
+    - shaders/star.frag
+    - shaders/frost.frag
+    - shaders/snowflake.frag
+    - shaders/silk.frag
+    - shaders/bark.frag
+    - shaders/sprites.frag
+    - shaders/jelly.frag
+    - shaders/snow.frag

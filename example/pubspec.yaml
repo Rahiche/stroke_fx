@@ -1,0 +1,22 @@
+name: stroke_fx_example
+description: A gallery of stroke_fx's effects in Latin, Japanese and Arabic.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fountain_pen: ^0.2.1
+  stroke_fx:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
