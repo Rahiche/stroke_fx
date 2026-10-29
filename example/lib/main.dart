@@ -146,6 +146,7 @@ class _GalleryState extends State<Gallery> with SingleTickerProviderStateMixin {
   void _tick(Duration elapsed) {
     _last = elapsed;
     _frames++;
+    _count(elapsed);
     if (typed != null) {
       clock.value = _sessionTime;
       return;
@@ -164,13 +165,28 @@ class _GalleryState extends State<Gallery> with SingleTickerProviderStateMixin {
     }
   }
 
+  /// What's drawing it: on the web, WebAssembly (skwasm) or JavaScript
+  /// (CanvasKit), whichever the browser can run.
+  static const _renderer = kIsWasm ? 'WebAssembly · skwasm' : (kIsWeb ? 'JavaScript · CanvasKit' : 'Impeller');
+  final _stamps = <Duration>[];
+  var _times = '';
+
+  /// The frames drawn in the last second, with the frame times, every
+  /// quarter second or so.
+  void _count(Duration elapsed) {
+    _stamps.add(elapsed);
+    while (elapsed - _stamps.first > const Duration(seconds: 1)) {
+      _stamps.removeAt(0);
+    }
+    if (_frames % 15 == 0) perf.value = '$_renderer · ${_stamps.length} fps$_times';
+  }
+
   void _onTimings(List<FrameTiming> timings) {
     _timings.addAll(timings);
     if (_timings.length > 600) _timings.removeRange(0, _timings.length - 600);
     final recent = _timings.length > 120 ? _timings.sublist(_timings.length - 120) : _timings;
     final s = _stats(recent);
-    perf.value = 'build ${s.build50.toStringAsFixed(1)} / raster ${s.raster50.toStringAsFixed(1)} ms '
-        '(p90 ${s.build90.toStringAsFixed(1)} / ${s.raster90.toStringAsFixed(1)})';
+    _times = ' · build ${s.build50.toStringAsFixed(1)} / raster ${s.raster50.toStringAsFixed(1)} ms';
   }
 
   static ({double build50, double build90, double raster50, double raster90, double rasterMax}) _stats(

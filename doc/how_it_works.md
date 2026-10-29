@@ -128,7 +128,11 @@ Ribbon and Dew bend their mesh on the CPU every frame. Ivy's vines and the sprit
 
 **Web: Chrome 152 in the desktop app's browser pane, 1024×768 at 2x, requestAnimationFrame over 3 s, Japanese sample.**
 - **CanvasKit:** every effect at 59.3–60 fps; p95 frame 17–19 ms, a 35 ms frame now and then on Ribbon. A first Ember measurement, taken while its shader compiled, gave 54 fps; measured again, 60.
-- **skwasm:** every effect renders the same as on CanvasKit (checked by eye). Its frame rate wasn't measured: the browser pane was hidden by then, and a hidden page's frames are throttled to one a second.
+- **skwasm (WebAssembly)**, measured on the public gallery (https://rahiche.github.io/stroke_fx/) in the same Chrome, 485×778 at 2x:
+  - Most effects run at 54–60 fps: Jelly 60, Fireflies 59.7, Frost 58.3, Constellation 58, Ember 57.7, Ivy 57.3, Neon 56, Snow 54.3.
+  - Sakura (48) and Weld (44–54) come lower. They draw the most sprites and particles.
+  - GitHub Pages can't send the cross-origin isolation headers skwasm's multi-threaded mode needs, so there it renders on the main thread, alongside the Dart code.
+  - The gallery's root is the WebAssembly build. It falls back to JavaScript where a browser can't run WasmGC. The CanvasKit build is at https://rahiche.github.io/stroke_fx/canvaskit/.
 
 ## The API
 
